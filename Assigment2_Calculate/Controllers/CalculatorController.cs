@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Assigment2_Calculate.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment1.Controllers
 {
@@ -11,16 +12,21 @@ namespace Assignment1.Controllers
         }
 
         // Core function – mỗi branch chỉ sửa hàm này
-        public int Calculate(int a, int b)
+        public int Calculate(SIGN sign,int a, int b)
         {
-            return 0; // TODO: implement theo từng branch
+            switch (sign)
+            {
+                case SIGN.PLUS:
+                    return a + b;
+            }
+            return 0;
         }
 
         // POST: /Calculator/Result
         [HttpPost]
-        public IActionResult Result(int a, int b)
+        public IActionResult Result(int a, int b,SIGN sign)
         {
-            int result = Calculate(a, b);
+            int result = Calculate(sign,a, b);
             ViewBag.Result = result;
             return View("Index");
         }
